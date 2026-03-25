@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Rift Codex e um atlas interativo de Runeterra com campeoes de League of Legends organizados por regiao."
+  >
+  <title>Rift Codex | Atlas Vivo de Runeterra</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-shell">
+    <div class="ambient ambient-left"></div>
+    <div class="ambient ambient-right"></div>
+
+    <header class="site-header" id="topo">
+      <div class="header-inner">
+        <a href="#hero" class="brand" aria-label="Ir para o inicio">
+          <span class="brand-mark"></span>
+          <span class="brand-copy">
+            <strong>Rift Codex</strong>
+            <small>Arquivo Vivo de Runeterra</small>
+          </span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="main-nav" id="main-nav" aria-label="Navegacao principal">
+          <a href="#sobre">Sobre</a>
+          <a href="#regioes">Regioes</a>
+          <a href="#campeoes">Campeoes</a>
+          <a href="#destaques">Destaques</a>
+          <a href="#mundo">Linha do Mundo</a>
+          <a href="#campeoes" class="nav-cta">Explorar campeoes</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-backdrop"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">Projeto de portfolio front-end</span>
+            <h1>Explore as regioes, os conflitos e as lendas de Runeterra.</h1>
+            <p>
+              Rift Codex transforma a lore de League of Legends em um atlas navegavel, com filtro por regiao, lane,
+              classe e um painel detalhado para cada campeao.
+            </p>
+            <div class="hero-actions">
+              <a href="#regioes" class="button button-primary">Explorar regioes</a>
+              <a href="#campeoes" class="button button-secondary">Ver galeria</a>
+            </div>
+          </div>
+
+          <div class="hero-panel reveal">
+            <div class="hero-panel-frame">
+              <span class="panel-kicker">Codice Arcano</span>
+              <h2>Mais conteudo, mais simetria e uma leitura visual digna de um produto real.</h2>
+              <p>
+                Um arquivo premium para navegar por Demacia, Noxus, Ionia, Freljord, Shurima e outras regioes
+                marcadas por guerra, fe, magia e ambicao.
+              </p>
+              <div class="hero-runes" id="heroStats" aria-label="Indicadores do projeto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section" id="sobre">
+        <div class="container split-layout">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Sobre o projeto</span>
+            <h2>Um atlas lendario que organiza campeoes por territorio, papel e estilo de jogo.</h2>
+          </div>
+          <div class="about-copy reveal">
+            <p>
+              O Rift Codex continua sendo uma experiencia totalmente em HTML, CSS e JavaScript puro, agora com base
+              expandida de campeoes, filtros mais uteis e um modal muito mais rico para explorar cada personagem.
+            </p>
+            <p>
+              O foco esta em acabamento visual, consistencia entre secoes, composicao simetrica e uma navegacao que
+              valoriza tanto a atmosfera de Runeterra quanto a clareza da informacao.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="regions section" id="regioes">
+        <div class="container">
+          <div class="section-heading reveal section-heading-tight">
+            <span class="eyebrow">Regioes de Runeterra</span>
+            <h2>Selecione um territorio para destacar os campeoes que definem sua historia.</h2>
+          </div>
+          <div class="region-filters reveal" id="regionFilters" aria-label="Filtros por regiao"></div>
+        </div>
+      </section>
+
+      <section class="champions section" id="campeoes">
+        <div class="container">
+          <div class="section-heading section-heading-inline reveal">
+            <div>
+              <span class="eyebrow">Campeoes</span>
+              <h2>Uma galeria mais ampla, organizada e facil de explorar.</h2>
+            </div>
+            <p id="championCounter">Carregando campeoes...</p>
+          </div>
+
+          <div class="filter-toolbar reveal">
+            <div class="filter-group">
+              <label for="laneFilter">Lane</label>
+              <select id="laneFilter" class="filter-select">
+                <option value="all">Todas</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="classFilter">Classe</label>
+              <select id="classFilter" class="filter-select">
+                <option value="all">Todas</option>
+              </select>
+            </div>
+            <button class="filter-reset" id="resetFilters" type="button">Limpar filtros</button>
+          </div>
+
+          <div class="champion-grid" id="championGrid"></div>
+        </div>
+      </section>
+
+      <section class="featured section" id="destaques">
+        <div class="container">
+          <div class="section-heading reveal section-heading-tight">
+            <span class="eyebrow">Destaques</span>
+            <h2>Campeoes centrais para sentir o peso politico, magico e militar de Runeterra.</h2>
+          </div>
+          <div class="featured-rail" id="featuredRail"></div>
+        </div>
+      </section>
+
+      <section class="worldline section" id="mundo">
+        <div class="container worldline-layout">
+          <div class="worldline-copy reveal">
+            <span class="eyebrow">Linha do mundo</span>
+            <h2>Runeterra e formada por reinos grandiosos, ruinas vivas e conflitos que nunca param.</h2>
+            <p>
+              Enquanto Demacia protege seus ideais, Noxus expande sua influencia. Ionia tenta preservar equilibrio,
+              o Freljord resiste ao frio ancestral, Shurima sonha com gloria restaurada e a Ilha das Sombras ecoa a
+              Ruina em cada fronteira que toca.
+            </p>
+          </div>
+
+          <div class="timeline reveal" aria-label="Resumo da linha do mundo">
+            <article>
+              <strong>Era Arcana</strong>
+              <p>Runas, entidades antigas e poderes espirituais moldam os alicerces do mundo.</p>
+            </article>
+            <article>
+              <strong>Formacao dos Reinos</strong>
+              <p>Imperios, ordens e tribos definem cultura, politica e rivalidades regionais.</p>
+            </article>
+            <article>
+              <strong>Conflitos Contemporaneos</strong>
+              <p>Reis caidos, revolucionarios, generais e sobreviventes redesenham o mapa de Runeterra.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <div>
+          <strong>Rift Codex</strong>
+          <p>Projeto conceitual de portfolio sobre lore, interface e exploracao visual de League of Legends.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#sobre">Sobre</a>
+          <a href="#regioes">Regioes</a>
+          <a href="#campeoes">Campeoes</a>
+          <a href="#destaques">Destaques</a>
+          <a href="#mundo">Linha do Mundo</a>
+        </div>
+        <div class="footer-meta">
+          <p>Creditos ficticios: Arquivistas de Valoran, Departamento de Runas e Memoria.</p>
+          <p class="footer-quote">"Toda lenda deixa uma cicatriz no mapa."</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <aside class="champion-modal" id="championModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalChampionName">
+      <button class="modal-close" type="button" data-close-modal aria-label="Fechar detalhes do campeao">x</button>
+      <div class="modal-banner">
+        <img id="modalChampionImage" alt="">
+      </div>
+
+      <div class="modal-topline">
+        <span id="modalChampionRegion">Regiao</span>
+        <span id="modalChampionClass">Classe</span>
+        <span id="modalChampionLanes">Lanes</span>
+      </div>
+
+      <div class="modal-hero">
+        <div class="modal-sigil" id="modalChampionSigil" aria-hidden="true"></div>
+        <div class="modal-title-block">
+          <h2 id="modalChampionName">Campeao</h2>
+          <p id="modalChampionTitle">Titulo</p>
+          <div class="modal-tags" id="modalChampionTags"></div>
+        </div>
+      </div>
+
+      <div class="modal-content">
+        <section>
+          <h3>Lore resumida</h3>
+          <p id="modalChampionLore"></p>
+        </section>
+        <section>
+          <h3>Perfil de jogo</h3>
+          <p id="modalChampionStyle"></p>
+        </section>
+        <section class="modal-span-2">
+          <h3>Habilidades</h3>
+          <ul class="skill-list" id="modalChampionSkills"></ul>
+        </section>
+        <section>
+          <h3>Curiosidades</h3>
+          <ul class="fact-list" id="modalChampionFacts"></ul>
+        </section>
+        <section>
+          <h3>Presenca em rota</h3>
+          <div class="lane-list" id="modalChampionLaneList"></div>
+        </section>
+      </div>
+    </div>
+  </aside>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">^</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
