@@ -1,7 +1,7 @@
 const regionArtBase = "https://wiki.leagueoflegends.com/en-us/Special:Redirect/file/";
 const splashBase = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/";
 const abilityBase = "https://raw.communitydragon.org/latest/game/assets/characters";
-const ddragonVersion = "14.24.1";
+const ddragonVersion = "16.6.1";
 
 const laneLabels = {
   top: "Topo",
@@ -9,6 +9,179 @@ const laneLabels = {
   mid: "Meio",
   adc: "ADC",
   support: "Suporte"
+};
+
+const championRegionMap = {
+  Aatrox: "shurima",
+  Ahri: "ionia",
+  Akali: "ionia",
+  Akshan: "shurima",
+  Alistar: "runeterra",
+  Ambessa: "noxus",
+  Amumu: "shurima",
+  Anivia: "freljord",
+  Annie: "noxus",
+  Aphelios: "targon",
+  Ashe: "freljord",
+  AurelionSol: "targon",
+  Aurora: "freljord",
+  Azir: "shurima",
+  Bard: "runeterra",
+  Belveth: "vazio",
+  Blitzcrank: "piltover-zaun",
+  Brand: "freljord",
+  Braum: "freljord",
+  Briar: "noxus",
+  Caitlyn: "piltover-zaun",
+  Camille: "piltover-zaun",
+  Cassiopeia: "noxus",
+  Chogath: "vazio",
+  Corki: "bandopolis",
+  Darius: "noxus",
+  Diana: "targon",
+  DrMundo: "piltover-zaun",
+  Draven: "noxus",
+  Ekko: "piltover-zaun",
+  Elise: "noxus",
+  Evelynn: "runeterra",
+  Ezreal: "piltover-zaun",
+  Fiddlesticks: "runeterra",
+  Fiora: "demacia",
+  Fizz: "aguas-de-sentina",
+  Galio: "demacia",
+  Gangplank: "aguas-de-sentina",
+  Garen: "demacia",
+  Gnar: "freljord",
+  Gragas: "freljord",
+  Graves: "aguas-de-sentina",
+  Gwen: "ilha-das-sombras",
+  Hecarim: "ilha-das-sombras",
+  Heimerdinger: "piltover-zaun",
+  Hwei: "ionia",
+  Illaoi: "aguas-de-sentina",
+  Irelia: "ionia",
+  Ivern: "ionia",
+  Janna: "piltover-zaun",
+  JarvanIV: "demacia",
+  Jax: "shurima",
+  Jayce: "piltover-zaun",
+  Jhin: "ionia",
+  Jinx: "piltover-zaun",
+  KaiSa: "vazio",
+  Kalista: "ilha-das-sombras",
+  Karma: "ionia",
+  Karthus: "ilha-das-sombras",
+  Kassadin: "vazio",
+  Katarina: "noxus",
+  Kayle: "demacia",
+  Kayn: "ionia",
+  Kennen: "ionia",
+  Khazix: "vazio",
+  Kindred: "runeterra",
+  Kled: "noxus",
+  KogMaw: "vazio",
+  KSante: "shurima",
+  Leblanc: "noxus",
+  LeeSin: "ionia",
+  Leona: "targon",
+  Lillia: "ionia",
+  Lissandra: "freljord",
+  Lucian: "demacia",
+  Lulu: "bandopolis",
+  Lux: "demacia",
+  Malphite: "ixtal",
+  Malzahar: "vazio",
+  Maokai: "ilha-das-sombras",
+  MasterYi: "ionia",
+  Milio: "ixtal",
+  MissFortune: "aguas-de-sentina",
+  Mordekaiser: "noxus",
+  Morgana: "demacia",
+  Naafiri: "shurima",
+  Nami: "targon",
+  Nasus: "shurima",
+  Nautilus: "aguas-de-sentina",
+  Neeko: "ixtal",
+  Nidalee: "ixtal",
+  Nilah: "runeterra",
+  Nocturne: "runeterra",
+  Nunu: "freljord",
+  NunuWillump: "freljord",
+  Olaf: "freljord",
+  Orianna: "piltover-zaun",
+  Ornn: "freljord",
+  Pantheon: "targon",
+  Poppy: "demacia",
+  Pyke: "aguas-de-sentina",
+  Qiyana: "ixtal",
+  Quinn: "demacia",
+  Rakan: "ionia",
+  Rammus: "shurima",
+  RekSai: "vazio",
+  Rell: "noxus",
+  Renata: "piltover-zaun",
+  Renekton: "shurima",
+  Rengar: "ixtal",
+  Riven: "noxus",
+  Rumble: "bandopolis",
+  Ryze: "runeterra",
+  Samira: "noxus",
+  Sejuani: "freljord",
+  Senna: "demacia",
+  Seraphine: "piltover-zaun",
+  Sett: "ionia",
+  Shaco: "runeterra",
+  Shen: "ionia",
+  Shyvana: "demacia",
+  Singed: "piltover-zaun",
+  Sion: "noxus",
+  Sivir: "shurima",
+  Skarner: "ixtal",
+  Smolder: "runeterra",
+  Sona: "demacia",
+  Soraka: "targon",
+  Swain: "noxus",
+  Sylas: "demacia",
+  Syndra: "ionia",
+  TahmKench: "runeterra",
+  Taliyah: "shurima",
+  Talon: "noxus",
+  Taric: "targon",
+  Teemo: "bandopolis",
+  Thresh: "ilha-das-sombras",
+  Tristana: "bandopolis",
+  Trundle: "freljord",
+  Tryndamere: "freljord",
+  TwistedFate: "aguas-de-sentina",
+  Twitch: "piltover-zaun",
+  Udyr: "freljord",
+  Urgot: "piltover-zaun",
+  Varus: "ionia",
+  Vayne: "demacia",
+  Veigar: "bandopolis",
+  Velkoz: "vazio",
+  Vex: "ilha-das-sombras",
+  Vi: "piltover-zaun",
+  Viego: "ilha-das-sombras",
+  Viktor: "piltover-zaun",
+  Vladimir: "noxus",
+  Volibear: "freljord",
+  Warwick: "piltover-zaun",
+  Wukong: "ionia",
+  Xayah: "ionia",
+  Xerath: "shurima",
+  XinZhao: "demacia",
+  Yasuo: "ionia",
+  Yone: "ionia",
+  Yorick: "ilha-das-sombras",
+  Yuumi: "bandopolis",
+  Zac: "piltover-zaun",
+  Zed: "ionia",
+  Zeri: "piltover-zaun",
+  Ziggs: "piltover-zaun",
+  Zilean: "shurima",
+  Zoe: "targon",
+  Zyra: "ixtal"
 };
 
 function regionArt(fileName) {
@@ -28,7 +201,11 @@ function abilityIcon(alias, slot) {
 }
 
 function ddragonChampionDataUrl(championKey) {
-  return `https://ddragon.leagueoflegends.com/cdn/${ddragonVersion}/data/en_US/champion/${championKey}.json`;
+  return `https://ddragon.leagueoflegends.com/cdn/${ddragonVersion}/data/pt_BR/champion/${championKey}.json`;
+}
+
+function ddragonChampionListUrl() {
+  return `https://ddragon.leagueoflegends.com/cdn/${ddragonVersion}/data/pt_BR/champion.json`;
 }
 
 function ddragonPassiveIcon(fileName) {
@@ -49,63 +226,271 @@ const regions = [
     name: "Todas as regioes",
     description: "Veja o atlas completo com todos os campeoes cadastrados no codice.",
     glow: "rgba(214, 180, 109, 0.22)",
-    image: splashArt("Ryze")
+    image: "assets/todasasregioes.jpg"
   },
   {
     id: "demacia",
     name: "Demacia",
+    sigil: "D",
+    headline: "Um reino de honra, muralhas e medo diante da magia.",
     description: "Honra, disciplina e uma relacao tensa com tudo o que lembra magia.",
+    lore: "Demacia nasceu como um refugio contra os excessos arcanos do passado e construiu sua identidade sobre ordem, coragem e disciplina. Por tras da imagem nobre, o reino vive conflitos internos profundos entre tradicao, poder militar e o temor da magia em seu proprio povo.",
+    theme: "Ordem e repressao",
+    traits: [
+      "Arquitetura monumental em pedra branca e ouro envelhecido.",
+      "Cultura militar marcada por honra, dever e legados familiares.",
+      "Instituicoes fortes, com forte vigilancia sobre magia.",
+      "Paisagem de fortalezas, vales e cidades solenes."
+    ],
+    conflicts: [
+      "Choque entre tradicao demaciana e individuos com dons magicos.",
+      "Tensao entre ideal heroico e controle politico.",
+      "Conflitos de fronteira e defesa da identidade nacional."
+    ],
     glow: "rgba(255, 214, 122, 0.2)",
-    image: regionArtUrl("Demacia Temple Of The Lightbringers.jpg")
+    image: "assets/demacia.jpg"
   },
   {
     id: "noxus",
     name: "Noxus",
+    sigil: "N",
+    headline: "Um imperio onde a forca assume forma militar, politica e simbolica.",
     description: "Um imperio brutal, estrategico e movido pela ambicao de conquistar.",
+    lore: "Noxus e mais que guerra: e uma filosofia de ascensao pelo merito, pela forca e pela audacia. Seus generais, assassinos e estadistas expandem fronteiras enquanto o imperio absorve culturas, transforma rivais em recursos e converte ambicao em identidade nacional.",
+    theme: "Expansao e poder",
+    traits: [
+      "Visual sombrio, imperial e marcado por vermelho, ferro e pedra escura.",
+      "Meritocracia militar como pilar cultural e politico.",
+      "Presenca de intriga, estrategia e brutalidade organizada.",
+      "Cidades-fortaleza e centros de comando opressivos."
+    ],
+    conflicts: [
+      "Conquista constante de novos territorios e povos.",
+      "Disputa entre disciplina imperial e ambicoes pessoais.",
+      "Uso de magia, espionagem e guerra como ferramentas legitimas."
+    ],
     glow: "rgba(225, 86, 86, 0.2)",
     image: regionArtUrl("Noxus The Immortal Bastion 01.jpg")
   },
   {
     id: "ionia",
     name: "Ionia",
+    sigil: "I",
+    headline: "Terra espiritual onde beleza, trauma e resistencia coexistem.",
     description: "Beleza espiritual, equilibrio delicado e guerreiros guiados por tradicao.",
+    lore: "Ionia e um conjunto de provincias moldadas por espiritualidade, natureza e arte. Depois da invasao noxiana, sua aparente serenidade revelou rachaduras profundas: cada vila, ordem e guerreiro agora escolhe como responder entre equilibrio, resistencia e radicalizacao.",
+    theme: "Equilibrio ferido",
+    traits: [
+      "Paisagens exuberantes, templos, jardins e presenca espiritual intensa.",
+      "Culturas diversas unidas por uma relacao viva com o territorio.",
+      "Estetica elegante e mistica, com arte e combate lado a lado.",
+      "Forcas espirituais influenciam vida, guerra e identidade."
+    ],
+    conflicts: [
+      "Debate entre pacifismo, tradicao e resposta militar.",
+      "Feridas deixadas pela invasao de Noxus.",
+      "Ruptura entre equilibrio espiritual e necessidade de sobrevivencia."
+    ],
     glow: "rgba(203, 123, 255, 0.2)",
-    image: regionArtUrl("Ionia The Placidium 02.jpg")
+    image: "assets/ionia.jpg"
   },
   {
     id: "freljord",
     name: "Freljord",
+    sigil: "F",
+    headline: "O norte ancestral onde gelo, mitos e sobrevivencia definem tudo.",
     description: "Gelo ancestral, tribos rivais e sobrevivencia forjada em tempestade.",
+    lore: "Freljord e uma terra de frio absoluto, memoria ancestral e rivalidade entre tribos. Cada jornada, tratado ou guerra e decidida por resistencia, tradicao e pelo peso de lendas antigas que ainda caminham sob a neve.",
+    theme: "Sobrevivencia ancestral",
+    traits: [
+      "Ambiente gelido, montanhoso e dominado por tempestades.",
+      "Tribos com liderancas fortes, simbolos antigos e fe em lendas.",
+      "Mistura de brutalidade, honra e profecia.",
+      "Sensacao de territorio indomavel e sagrado."
+    ],
+    conflicts: [
+      "Rivalidade entre Avarosanos, Garra do Inverno e antigos poderes.",
+      "Busca por unificacao diante do caos e da fome.",
+      "Convivencia entre politica tribal e entidades primordiais."
+    ],
     glow: "rgba(137, 205, 255, 0.22)",
-    image: regionArtUrl("Freljord A Good Day 01.jpg")
+    image: "assets/freljord.jpg"
   },
   {
     id: "piltover-zaun",
     name: "Piltover & Zaun",
+    sigil: "PZ",
+    headline: "Duas cidades ligadas pela inovacao, pela desigualdade e pelo risco.",
     description: "Progresso hextec e caos quimico dividem o mesmo horizonte urbano.",
+    lore: "Piltover e Zaun formam um mesmo eixo urbano dividido por classe, ar e poder. Acima, o brilho do progresso hextec. Abaixo, a sobrevivencia entre quimica, improviso e violencia. Juntas, as cidades movem o futuro de Runeterra e pagam caro por isso.",
+    theme: "Progresso e desigualdade",
+    traits: [
+      "Paisagem urbana vertical com tecnologia, neons e engenharia.",
+      "Piltover representa refinamento, ordem e visao comercial.",
+      "Zaun concentra experimentacao, risco e sobrevivencia subterranea.",
+      "Atmosfera de laboratorio, revolta e cidade-industria."
+    ],
+    conflicts: [
+      "Abismo social entre riqueza e abandono.",
+      "Tecnologia usada tanto para inovar quanto para destruir.",
+      "Conflito permanente entre ordem piltoviana e caos zaunita."
+    ],
     glow: "rgba(76, 235, 184, 0.18)",
     image: regionArtUrl("Piltover Sidereal Avenue.jpg")
   },
   {
     id: "ilha-das-sombras",
     name: "Ilha das Sombras",
+    sigil: "IS",
+    headline: "Um reino arruinado onde nevoa e memoria corrompida nunca descansam.",
     description: "Ruina, nevoa e espectros presos a uma tragedia que nunca termina.",
+    lore: "A Ilha das Sombras e o eco eterno de uma catastrofe alimentada por obsessao, morte e magia corrompida. Sua nevoa avanca como lembranca viva da Ruina, arrastando tudo que toca para um estado de perda, violencia e assombro.",
+    theme: "Ruina e assombramento",
+    traits: [
+      "Paleta espectral, verde-fantasma e ruinas tomadas pela nevoa.",
+      "Ambiente tragico, funebre e sobrenatural.",
+      "Sensacao de tempo interrompido e eternamente corrompido.",
+      "Arquitetura decadente e espiritualidade retorcida."
+    ],
+    conflicts: [
+      "Expansao da Ruina sobre outras terras.",
+      "Presenca de entidades presas ao proprio tormento.",
+      "Conflito entre memoria humana e corrupcao espectral."
+    ],
     glow: "rgba(98, 255, 198, 0.2)",
     image: regionArtUrl("Shadow Isles The Sundered Vaults Of Arcana.jpg")
   },
   {
     id: "shurima",
     name: "Shurima",
+    sigil: "S",
+    headline: "Desertos imperiais, ascensao solar e ecos de uma gloria colossal.",
     description: "Imperio solar, ruinas colossais e legados enterrados sob a areia.",
+    lore: "Shurima foi um dos maiores imperios de Runeterra e ainda carrega essa grandiosidade em suas ruinas, lendas e ascensoes. Entre cidades soterradas, deuses antigos e imperadores renascidos, o deserto guarda tanto passado quanto futuro.",
+    theme: "Legado imperial",
+    traits: [
+      "Paisagens deserticas gigantescas e arquitetura monumental.",
+      "Mitologia solar, ascensao e heranca imperial.",
+      "Ruinas antigas escondem poder, historia e catastrofes.",
+      "Presenca constante de areia, ouro e vastidao."
+    ],
+    conflicts: [
+      "Reconstrucao do imperio diante de velhas feridas.",
+      "Choque entre ascendidos, herdeiros e sobreviventes.",
+      "Disputa entre memoria gloriosa e decadencia historica."
+    ],
     glow: "rgba(255, 193, 98, 0.2)",
     image: regionArtUrl("Shurima Zoantha Cascade 01.jpg")
   },
   {
     id: "targon",
     name: "Targon",
+    sigil: "T",
+    headline: "O monte sagrado onde mortais enfrentam o divino e voltam transformados.",
     description: "O pico onde mortais desafiam os ceus para tocar o divino.",
+    lore: "Targon e um territorio de peregrinacao, fe e transcendencia. O Monte Targon atrai guerreiros, visionarios e escolhidos que sobem em busca de resposta, poder ou revelacao, muitas vezes retornando como vasos de forcas cosmicas maiores que eles mesmos.",
+    theme: "Fe e transcendencia",
+    traits: [
+      "Paisagens celestiais, picos impossiveis e luz ritualistica.",
+      "Relacao intensa com astros, aspectos e destino.",
+      "Atmosfera sagrada, silenciosa e monumental.",
+      "Mistura de mitologia, misticismo e desafio fisico extremo."
+    ],
+    conflicts: [
+      "Conflito entre vontade humana e designio cosmico.",
+      "Ruptura entre Sol, Lua e diferentes interpretacoes da fe.",
+      "Peso de carregar poderes maiores que a propria identidade."
+    ],
     glow: "rgba(181, 176, 255, 0.18)",
-    image: regionArtUrl("Targon Solari Prayer Shrine.jpg")
+    image: "assets/montetargon.jpg"
+  },
+  {
+    id: "ixtal",
+    name: "Ixtal",
+    sigil: "IX",
+    headline: "Uma civilizacao oculta onde natureza e magia elemental formam a propria ordem.",
+    description: "Selvas densas, arquitetura ancestral e dominio absoluto dos elementos.",
+    lore: "Ixtal permaneceu isolada por seculos, protegendo seus conhecimentos elementais e sua sofisticada hierarquia arcana. Sob a copa de florestas monumentais, seus governantes tratam o mundo exterior como caotico, inferior e potencialmente perigoso.",
+    theme: "Isolamento e maestria elemental",
+    traits: [
+      "Paisagens tropicais, ruinas escondidas e poder elemental refinado.",
+      "Sociedade elitista guiada por linhagem, conhecimento e controle.",
+      "Arquitetura integrada ao ambiente natural e a energia magica.",
+      "Atmosfera de reino secreto, elegante e antigo."
+    ],
+    conflicts: [
+      "Choque entre isolamento tradicional e pressao do mundo exterior.",
+      "Disputa entre ordem ixtali e instabilidade das florestas ao redor.",
+      "Uso de magia como instrumento de controle social e poder."
+    ],
+    glow: "rgba(87, 214, 149, 0.2)",
+    image: "assets/ixtal.jpg"
+  },
+  {
+    id: "vazio",
+    name: "O Vazio",
+    sigil: "VV",
+    headline: "Um abismo antigo que devora forma, sentido e realidade.",
+    description: "Uma ameaca alienigena e silenciosa que consome tudo o que toca.",
+    lore: "O Vazio nao e um reino comum, mas uma ausencia faminta que observa Runeterra como algo a ser corrompido, adaptado ou apagado. Suas criaturas surgem onde a realidade enfraquece, trazendo mutacao, horror e uma inteligencia incompreensivel.",
+    theme: "Corrupcao e aniquilacao",
+    traits: [
+      "Estetica alienigena, organica e profundamente inquietante.",
+      "Criaturas mutantes moldadas para consumir e evoluir.",
+      "Sensacao de vastidao cosmica e terror existencial.",
+      "Paleta escura com contrastes vibrantes e irreais."
+    ],
+    conflicts: [
+      "Ameaca constante de ruptura entre Runeterra e o Vazio.",
+      "Contaminacao de criaturas, magia e territorio.",
+      "Luta entre civilizacao e uma fome sem rosto."
+    ],
+    glow: "rgba(162, 98, 255, 0.22)",
+    image: "assets/vazio.jpg"
+  },
+  {
+    id: "bandopolis",
+    name: "Bandopolis",
+    sigil: "B",
+    headline: "A cidade escondida dos yordles, onde fantasia e caos andam de maos dadas.",
+    description: "Um dominio caprichoso, colorido e imprevisivel alem dos portais espirituais.",
+    lore: "Bandopolis existe em outra camada da realidade, ligada a Runeterra por passagens secretas e energia feerica. E o lar dos yordles, seres cuja leveza, curiosidade e excentricidade escondem uma relacao muito propria com magia, espaco e tempo.",
+    theme: "Fantasia e travessura",
+    traits: [
+      "Ambiente whimsical, vibrante e cheio de magia feerica.",
+      "Lar dos yordles e de sua logica encantadoramente imprevisivel.",
+      "Espaco dobrado por portais, caminhos e regras incomuns.",
+      "Sensacao de lugar oculto, vivo e quase sonhado."
+    ],
+    conflicts: [
+      "Choque entre leveza yordle e os perigos do mundo material.",
+      "Segredos de Bandopolis e sua relacao com portais.",
+      "Equilibrio entre humor, magia e caos."
+    ],
+    glow: "rgba(255, 173, 112, 0.2)",
+    image: "assets/bandopolis.jpg"
+  },
+  {
+    id: "aguas-de-sentina",
+    name: "Aguas de Sentina",
+    sigil: "AS",
+    headline: "Um porto de saqueadores, monstros marinhos e pactos feitos na base da sobrevivencia.",
+    description: "Docas sombrias, supersticao, comercio brutal e o cheiro constante de sal e perigo.",
+    lore: "Aguas de Sentina e uma cidade-portuario marcada por caca, contrabando e violencia. Entre tavernas, navios e criancas do mar, a regiao prospera em torno de coragem, oportunismo e da certeza de que qualquer noite pode terminar em lenda ou tragedia.",
+    theme: "Piratas e sobrevivencia",
+    traits: [
+      "Atmosfera maritima, sombria e carregada de supersticao.",
+      "Cultura de mercenarios, caçadores e capitães brutais.",
+      "Mistura de aventura, decadencia e lucro imediato.",
+      "Paisagens de cais, mar aberto e tempestades violentas."
+    ],
+    conflicts: [
+      "Disputa constante por poder entre capitães e faccoes locais.",
+      "Ameacas vindas do mar e de criaturas ancestrais.",
+      "Vida sustentada por risco, saque e acordos instaveis."
+    ],
+    glow: "rgba(88, 178, 255, 0.2)",
+    image: "assets/aguasdesentina.jpg"
   }
 ];
 
@@ -784,20 +1169,27 @@ const champions = [
   }
 ];
 
+document.body.classList.add("js-ready");
+
 const featuredIds = ["yasuo", "lux", "swain", "ashe", "jinx", "viego"];
+const currentPage = document.body.dataset.page || "home";
+const isCatalogPage = currentPage === "catalog";
 
 const regionFilters = document.getElementById("regionFilters");
 const championGrid = document.getElementById("championGrid");
 const featuredRail = document.getElementById("featuredRail");
 const championCounter = document.getElementById("championCounter");
 const championModal = document.getElementById("championModal");
+const regionModal = document.getElementById("regionModal");
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.getElementById("main-nav");
 const backToTop = document.getElementById("backToTop");
 const laneFilter = document.getElementById("laneFilter");
 const classFilter = document.getElementById("classFilter");
+const searchFilter = document.getElementById("searchFilter");
 const resetFiltersButton = document.getElementById("resetFilters");
 const heroStats = document.getElementById("heroStats");
+const modalRegionFilterButton = document.getElementById("modalRegionFilterButton");
 
 const detailElements = {
   name: document.getElementById("modalChampionName"),
@@ -815,15 +1207,67 @@ const detailElements = {
   laneList: document.getElementById("modalChampionLaneList")
 };
 
+const regionDetailElements = {
+  name: document.getElementById("modalRegionName"),
+  headline: document.getElementById("modalRegionHeadline"),
+  tag: document.getElementById("modalRegionTag"),
+  theme: document.getElementById("modalRegionTheme"),
+  image: document.getElementById("modalRegionImage"),
+  sigil: document.getElementById("modalRegionSigil"),
+  description: document.getElementById("modalRegionDescription"),
+  traits: document.getElementById("modalRegionTraits"),
+  conflicts: document.getElementById("modalRegionConflicts"),
+  champions: document.getElementById("modalRegionChampions")
+};
+
 const activeFilters = {
   region: "all",
   lane: "all",
-  className: "all"
+  className: "all",
+  search: ""
 };
 
 const championSpellCache = new Map();
+let activeRegionModalId = "all";
+let championRoster = [...champions];
+
+function hydrateFiltersFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const region = params.get("regiao");
+  const lane = params.get("lane");
+  const className = params.get("classe");
+  const search = params.get("busca");
+
+  if (region) {
+    activeFilters.region = region;
+  }
+  if (lane) {
+    activeFilters.lane = lane;
+  }
+  if (className) {
+    activeFilters.className = className;
+  }
+  if (search) {
+    activeFilters.search = search;
+  }
+}
+
+function syncFilterControls() {
+  if (laneFilter) {
+    laneFilter.value = activeFilters.lane;
+  }
+  if (classFilter) {
+    classFilter.value = activeFilters.className;
+  }
+  if (searchFilter) {
+    searchFilter.value = activeFilters.search;
+  }
+}
 
 function formatRegion(regionId) {
+  if (regionId === "runeterra") {
+    return "Runeterra";
+  }
   const region = regions.find((item) => item.id === regionId);
   return region ? region.name : regionId;
 }
@@ -832,11 +1276,242 @@ function formatLane(laneId) {
   return laneLabels[laneId] || laneId;
 }
 
+function getCatalogUrl(regionId = "all") {
+  const url = new URL("campeoes.html", window.location.href);
+  if (regionId && regionId !== "all") {
+    url.searchParams.set("regiao", regionId);
+  }
+  url.hash = "campeoes";
+  return url.toString();
+}
+
+function goToCatalog(regionId = "all") {
+  window.location.href = getCatalogUrl(regionId);
+}
+
+function getCatalogAnchorTarget() {
+  return document.getElementById("campeoes") || document.getElementById("hero");
+}
+
+function stripHtml(value) {
+  return String(value || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+}
+
+function mapClassTag(tag = "Especialista") {
+  const classMap = {
+    Assassin: "Assassino",
+    Fighter: "Lutador",
+    Mage: "Mago",
+    Marksman: "Atirador",
+    Support: "Suporte",
+    Tank: "Tanque",
+    Controller: "Controlador",
+    Specialist: "Especialista"
+  };
+  return classMap[tag] || tag;
+}
+
+function mapPrimaryClass(tags = []) {
+  const primary = Array.isArray(tags) ? tags[0] || "Especialista" : tags || "Especialista";
+  return mapClassTag(primary);
+}
+
+function inferLanes(tags = []) {
+  const set = new Set();
+  if (tags.includes("Marksman")) {
+    set.add("adc");
+  }
+  if (tags.includes("Support")) {
+    set.add("support");
+  }
+  if (tags.includes("Mage") || tags.includes("Assassin")) {
+    set.add("mid");
+  }
+  if (tags.includes("Tank")) {
+    set.add("top");
+    if (!set.has("support")) {
+      set.add("support");
+    }
+  }
+  if (tags.includes("Fighter")) {
+    set.add("top");
+    set.add("jungle");
+  }
+  if (set.size === 0) {
+    set.add("mid");
+  }
+  return [...set].slice(0, 2);
+}
+
+function summarizeText(text, maxLength = 140) {
+  const clean = stripHtml(text);
+  if (!clean) {
+    return "Descricao indisponivel.";
+  }
+
+  const firstSentence = clean.split(/(?<=[.!?])\s+/)[0];
+  const candidate = firstSentence && firstSentence.length > 18 ? firstSentence : clean;
+  if (candidate.length <= maxLength) {
+    return candidate;
+  }
+
+  return `${candidate.slice(0, maxLength).trim()}...`;
+}
+
+function hashChampionSeed(value) {
+  return [...String(value)].reduce((accumulator, character) => accumulator + character.charCodeAt(0), 0);
+}
+
+function pickFactVariant(seed, variants, offset = 0) {
+  return variants[(seed + offset) % variants.length];
+}
+
+function normalizeTagList(tags) {
+  if (Array.isArray(tags)) {
+    return tags.filter(Boolean).map((tag) => String(tag).trim()).filter(Boolean);
+  }
+
+  if (typeof tags === "string") {
+    const trimmed = tags.trim();
+    if (!trimmed) {
+      return [];
+    }
+
+    if (trimmed.includes(",")) {
+      return trimmed.split(",").map((tag) => tag.trim()).filter(Boolean);
+    }
+
+    return [trimmed];
+  }
+
+  return [];
+}
+
+function expandShortRole(tag) {
+  const shortMap = {
+    a: "assassino",
+    f: "lutador",
+    m: "mago",
+    t: "tanque",
+    s: "suporte",
+    c: "controlador",
+    e: "especialista"
+  };
+
+  const normalized = String(tag || "").trim().toLowerCase();
+  return shortMap[normalized] || normalized;
+}
+
+function formatRoleList(tags) {
+  const normalizedTags = normalizeTagList(tags).map(expandShortRole);
+
+  if (!normalizedTags.length) {
+    return "especialista";
+  }
+  if (normalizedTags.length === 1) {
+    return normalizedTags[0];
+  }
+  if (normalizedTags.length === 2) {
+    return `${normalizedTags[0]} e ${normalizedTags[1]}`;
+  }
+  return `${normalizedTags[0]}, ${normalizedTags[1]} e ${normalizedTags[2]}`;
+}
+
+function buildChampionFacts(championData, translatedTags, lanes = []) {
+  const seed = hashChampionSeed(championData.id);
+  const roleText = formatRoleList(translatedTags);
+  const laneText = lanes.length ? lanes.map(formatLane).join(" / ") : "rotas flexiveis";
+  const resourceText = championData.partype && championData.partype.trim() ? championData.partype.toLowerCase() : "sem recurso tradicional";
+  const titleText = championData.title || "uma figura marcante de Runeterra";
+
+  const identityFacts = [
+    `${championData.name} carrega o titulo "${titleText}", o que ja ajuda a definir sua presenca no universo.`,
+    `${championData.name} se destaca na lore por assumir o papel de ${titleText.toLowerCase()}.`,
+    `Dentro de Runeterra, ${championData.name} e reconhecido como ${titleText.toLowerCase()}.`
+  ];
+
+  const gameplayFacts = [
+    `Seu estilo costuma girar em torno de ${roleText}, funcionando muito bem em ${laneText}.`,
+    `Na pratica, ${championData.name} costuma aparecer como ${roleText} e se adapta melhor a ${laneText}.`,
+    `${championData.name} entra em jogo com perfil de ${roleText}, geralmente brilhando em ${laneText}.`
+  ];
+
+  const flavorFacts = [
+    `${championData.name} usa ${resourceText}, o que influencia diretamente seu ritmo de trocas e janelas de poder.`,
+    `O uso de ${resourceText} ajuda a definir como ${championData.name} cresce e administra suas jogadas.`,
+    `Parte da identidade de ${championData.name} em jogo vem de atuar com ${resourceText}, exigindo leitura de momento e ritmo.`
+  ];
+
+  return [
+    pickFactVariant(seed, identityFacts, 0),
+    pickFactVariant(seed, gameplayFacts, 1),
+    pickFactVariant(seed, flavorFacts, 2)
+  ];
+}
+
+function buildGeneratedChampion(championData) {
+  const tags = championData.tags || [];
+  const championKey = championData.id;
+  const slug = championKey.toLowerCase();
+  const translatedTags = tags.map(mapClassTag).slice(0, 3);
+
+  return {
+    id: slug,
+    alias: slug,
+    apiKey: championKey,
+    name: championData.name,
+    title: championData.title,
+    region: championRegionMap[championKey] || "runeterra",
+    className: mapPrimaryClass(tags),
+    lanes: inferLanes(tags),
+    tags: translatedTags,
+    style: `${championData.name} atua principalmente como ${mapPrimaryClass(tags).toLowerCase()} e foi carregado automaticamente pela base oficial do Data Dragon em portugues.`,
+    lore: summarizeText(championData.blurb, 180),
+    facts: buildChampionFacts(championData, translatedTags, inferLanes(tags)),
+    image: splashArt(championKey),
+    artStart: "#6d8aac",
+    artEnd: "#162233",
+    sigil: championData.name.slice(0, 1).toUpperCase(),
+    skills: [],
+    autoGenerated: true,
+    detailLoaded: false
+  };
+}
+
+async function loadChampionRoster() {
+  try {
+    const response = await fetch(ddragonChampionListUrl());
+    if (!response.ok) {
+      throw new Error("Falha ao carregar champion.json");
+    }
+
+    const payload = await response.json();
+    const generated = Object.values(payload.data).map(buildGeneratedChampion);
+    const manualById = new Map(champions.map((champion) => [champion.id, champion]));
+    championRoster = generated.map((champion) => {
+      const manual = manualById.get(champion.id);
+      return manual ? { ...champion, ...manual, autoGenerated: false, detailLoaded: true } : champion;
+    });
+    renderHeroStats();
+    renderFilterOptions();
+    renderChampions();
+  } catch (error) {
+    championRoster = [...champions];
+    renderHeroStats();
+    renderFilterOptions();
+    renderChampions();
+  }
+}
+
 function renderHeroStats() {
+  if (!heroStats) {
+    return;
+  }
+
   const items = [
-    { value: String(champions.length), label: "campeoes com lore, lanes e skills." },
+    { value: String(championRoster.length), label: "campeoes no roster atual." },
     { value: String(regions.length - 1), label: "regioes principais ilustradas." },
-    { value: String(new Set(champions.flatMap((champion) => champion.lanes)).size), label: "rotas filtraveis na galeria." }
+    { value: String(new Set(championRoster.flatMap((champion) => champion.lanes)).size), label: "rotas filtraveis na galeria." }
   ];
 
   heroStats.innerHTML = items
@@ -852,6 +1527,29 @@ function renderHeroStats() {
 }
 
 function renderRegions() {
+  if (!regionFilters) {
+    return;
+  }
+
+  const variant = regionFilters.dataset.variant || "cards";
+
+  if (variant === "compact") {
+    regionFilters.innerHTML = regions
+      .map(
+        (region) => `
+          <button
+            class="region-pill ${region.id === activeFilters.region ? "is-active" : ""}"
+            type="button"
+            data-region="${region.id}"
+          >
+            ${region.name}
+          </button>
+        `
+      )
+      .join("");
+    return;
+  }
+
   regionFilters.innerHTML = regions
     .map(
       (region) => `
@@ -879,9 +1577,17 @@ function renderRegions() {
     .join("");
 }
 
+function getRegionChampions(regionId) {
+  return championRoster.filter((champion) => champion.region === regionId);
+}
+
 function renderFilterOptions() {
-  const lanes = [...new Set(champions.flatMap((champion) => champion.lanes))];
-  const classes = [...new Set(champions.map((champion) => champion.className))].sort((a, b) => a.localeCompare(b));
+  if (!laneFilter || !classFilter) {
+    return;
+  }
+
+  const lanes = [...new Set(championRoster.flatMap((champion) => champion.lanes))];
+  const classes = [...new Set(championRoster.map((champion) => champion.className))].sort((a, b) => a.localeCompare(b));
 
   laneFilter.innerHTML = ['<option value="all">Todas</option>']
     .concat(lanes.map((lane) => `<option value="${lane}">${formatLane(lane)}</option>`))
@@ -890,65 +1596,89 @@ function renderFilterOptions() {
   classFilter.innerHTML = ['<option value="all">Todas</option>']
     .concat(classes.map((className) => `<option value="${className}">${className}</option>`))
     .join("");
+
+  syncFilterControls();
 }
 
 function getFilteredChampions() {
-  return champions.filter((champion) => {
+  const searchTerm = activeFilters.search.trim().toLowerCase();
+
+  return championRoster.filter((champion) => {
     const regionMatch = activeFilters.region === "all" || champion.region === activeFilters.region;
     const laneMatch = activeFilters.lane === "all" || champion.lanes.includes(activeFilters.lane);
     const classMatch = activeFilters.className === "all" || champion.className === activeFilters.className;
-    return regionMatch && laneMatch && classMatch;
+    const searchMatch = !searchTerm || champion.name.toLowerCase().includes(searchTerm);
+    return regionMatch && laneMatch && classMatch && searchMatch;
   });
 }
 
 function renderChampions() {
+  if (!championGrid) {
+    return;
+  }
+
   const visibleChampions = getFilteredChampions();
 
-  championGrid.innerHTML = visibleChampions
-    .map(
-      (champion) => `
-        <article
-          class="champion-card reveal is-visible"
-          tabindex="0"
-          role="button"
-          aria-label="Abrir detalhes de ${champion.name}"
-          data-champion="${champion.id}"
-          style="--champion-image: url('${champion.image}'); --art-start: ${champion.artStart}; --art-end: ${champion.artEnd};"
-        >
-          <div class="champion-art" data-sigil="${champion.sigil}"></div>
-          <div class="champion-meta">
-            <div class="champion-topline">
-              <span class="champion-region">${formatRegion(champion.region)}</span>
-              <span class="champion-class">${champion.className}</span>
-            </div>
-            <div>
-              <h3>${champion.name}</h3>
-              <p>${champion.title}</p>
-            </div>
-            <div class="chip-row">
-              ${champion.lanes.map((lane) => `<span class="chip is-emphasis">${formatLane(lane)}</span>`).join("")}
-            </div>
-            <div class="chip-row">
-              ${champion.tags.slice(0, 3).map((tag) => `<span class="chip">${tag}</span>`).join("")}
-            </div>
-          </div>
-        </article>
-      `
-    )
-    .join("");
+  championGrid.innerHTML = visibleChampions.length
+    ? visibleChampions
+        .map(
+          (champion) => `
+            <article
+              class="champion-card reveal is-visible"
+              tabindex="0"
+              role="button"
+              aria-label="Abrir detalhes de ${champion.name}"
+              data-champion="${champion.id}"
+              style="--champion-image: url('${champion.image}'); --art-start: ${champion.artStart}; --art-end: ${champion.artEnd};"
+            >
+              <div class="champion-art" data-sigil="${champion.sigil}"></div>
+              <div class="champion-meta">
+                <div class="champion-topline">
+                  <span class="champion-region">${formatRegion(champion.region)}</span>
+                  <span class="champion-class">${champion.className}</span>
+                </div>
+                <div>
+                  <h3>${champion.name}</h3>
+                  <p>${champion.title}</p>
+                </div>
+                <div class="chip-row">
+                  ${champion.lanes.map((lane) => `<span class="chip is-emphasis">${formatLane(lane)}</span>`).join("")}
+                </div>
+                <div class="chip-row">
+                  ${champion.tags.slice(0, 3).map((tag) => `<span class="chip">${tag}</span>`).join("")}
+                </div>
+              </div>
+            </article>
+          `
+        )
+        .join("")
+    : '<div class="empty-state">Nenhum campeao foi encontrado com os filtros atuais.</div>';
 
-  championCounter.textContent = `${visibleChampions.length} campeao${visibleChampions.length > 1 ? "es" : ""} visivel${visibleChampions.length > 1 ? "s" : ""}`;
+  if (championCounter) {
+    championCounter.textContent = `${visibleChampions.length} campeao${visibleChampions.length > 1 ? "es" : ""} visivel${visibleChampions.length > 1 ? "s" : ""}`;
+  }
 }
 
 function renderFeatured() {
+  if (!featuredRail) {
+    return;
+  }
+
   const featuredChampions = featuredIds
-    .map((id) => champions.find((champion) => champion.id === id))
+    .map((id) => championRoster.find((champion) => champion.id === id))
     .filter(Boolean);
 
   featuredRail.innerHTML = featuredChampions
     .map(
       (champion) => `
-        <article class="featured-card reveal" style="--feature-image: url('${champion.image}'); --feature-start: ${champion.artStart};">
+        <article
+          class="featured-card reveal is-visible"
+          tabindex="0"
+          role="button"
+          aria-label="Abrir detalhes de ${champion.name}"
+          data-champion="${champion.id}"
+          style="--feature-image: url('${champion.image}'); --feature-start: ${champion.artStart};"
+        >
           <span>${formatRegion(champion.region)}</span>
           <h3>${champion.name}</h3>
           <p>${champion.style}</p>
@@ -971,18 +1701,19 @@ async function getChampionSpellIcons(champion) {
   }
 
   const fallbackIcons = buildFallbackSkillIcons(champion);
+  const championKey = champion.apiKey || champion.alias.charAt(0).toUpperCase() + champion.alias.slice(1);
 
   try {
-    const response = await fetch(ddragonChampionDataUrl(champion.alias.charAt(0).toUpperCase() + champion.alias.slice(1)));
+    const response = await fetch(ddragonChampionDataUrl(championKey));
     if (!response.ok) {
       throw new Error(`Falha ao carregar ${champion.alias}`);
     }
 
     const payload = await response.json();
-    const championKey = payload.data[champion.alias.charAt(0).toUpperCase() + champion.alias.slice(1)];
+    const championData = payload.data[championKey];
     const resolvedIcons = [
-      { slot: "Passiva", icon: ddragonPassiveIcon(championKey.passive.image.full) },
-      ...championKey.spells.map((spellData, index) => ({
+      { slot: "Passiva", icon: ddragonPassiveIcon(championData.passive.image.full) },
+      ...championData.spells.map((spellData, index) => ({
         slot: ["Q", "W", "E", "R"][index],
         icon: ddragonSpellIcon(spellData.image.full)
       }))
@@ -993,6 +1724,48 @@ async function getChampionSpellIcons(champion) {
   } catch (error) {
     championSpellCache.set(champion.id, fallbackIcons);
     return fallbackIcons;
+  }
+}
+
+async function ensureChampionDetails(champion) {
+  if (champion.detailLoaded || !champion.autoGenerated) {
+    return champion;
+  }
+
+  const championKey = champion.apiKey || champion.alias.charAt(0).toUpperCase() + champion.alias.slice(1);
+
+  try {
+    const response = await fetch(ddragonChampionDataUrl(championKey));
+    if (!response.ok) {
+      throw new Error(`Falha ao carregar detalhes de ${championKey}`);
+    }
+
+    const payload = await response.json();
+    const championData = payload.data[championKey];
+    champion.title = championData.title;
+    champion.lore = summarizeText(championData.lore || championData.blurb || champion.lore, 220);
+    champion.tags = (championData.tags || []).map(mapClassTag).slice(0, 3);
+    champion.facts = buildChampionFacts(championData, champion.tags, champion.lanes);
+    champion.skills = [
+      skill("Passiva", championData.passive.name, summarizeText(championData.passive.description, 130), "passiva"),
+      ...championData.spells.map((spellData, index) =>
+        skill(["Q", "W", "E", "R"][index], spellData.name, summarizeText(spellData.description, 130), "habilidade")
+      )
+    ];
+    champion.detailLoaded = true;
+    return champion;
+  } catch (error) {
+    champion.skills = champion.skills.length
+      ? champion.skills
+      : [
+          skill("Passiva", "Dados indisponiveis", "Nao foi possivel carregar os detalhes oficiais desta habilidade.", "passiva"),
+          skill("Q", "Dados indisponiveis", "Nao foi possivel carregar os detalhes oficiais desta habilidade.", "habilidade"),
+          skill("W", "Dados indisponiveis", "Nao foi possivel carregar os detalhes oficiais desta habilidade.", "habilidade"),
+          skill("E", "Dados indisponiveis", "Nao foi possivel carregar os detalhes oficiais desta habilidade.", "habilidade"),
+          skill("R", "Dados indisponiveis", "Nao foi possivel carregar os detalhes oficiais desta habilidade.", "ultimate")
+        ];
+    champion.detailLoaded = true;
+    return champion;
   }
 }
 
@@ -1022,12 +1795,71 @@ function renderSkillItem(champion, item, resolvedIcons) {
   `;
 }
 
+function openRegionModal(regionId) {
+  if (!regionModal) {
+    return;
+  }
+
+  const region = regions.find((item) => item.id === regionId);
+  if (!region) {
+    return;
+  }
+
+  if (region.id === "all") {
+    activeFilters.region = "all";
+    applyFilters();
+    const target = getCatalogAnchorTarget();
+    if (target && isCatalogPage) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      goToCatalog();
+    }
+    return;
+  }
+
+  const linkedChampions = getRegionChampions(regionId);
+  activeRegionModalId = regionId;
+
+  regionDetailElements.name.textContent = region.name;
+  regionDetailElements.headline.textContent = region.headline;
+  regionDetailElements.tag.textContent = region.name;
+  regionDetailElements.theme.textContent = region.theme;
+  regionDetailElements.image.src = region.image;
+  regionDetailElements.image.alt = `Paisagem de ${region.name}`;
+  regionDetailElements.sigil.textContent = region.sigil;
+  regionDetailElements.description.textContent = region.lore;
+  regionDetailElements.traits.innerHTML = region.traits.map((item) => `<li>${item}</li>`).join("");
+  regionDetailElements.conflicts.innerHTML = region.conflicts.map((item) => `<li>${item}</li>`).join("");
+  regionDetailElements.champions.innerHTML = linkedChampions
+    .map((champion) => `<span class="chip is-emphasis">${champion.name}</span>`)
+    .join("") || '<span class="chip">Nenhum campeao desta regiao foi adicionado ainda.</span>';
+
+  regionModal.classList.add("is-open");
+  regionModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("no-scroll");
+}
+
+function closeRegionModal() {
+  if (!regionModal) {
+    return;
+  }
+
+  regionModal.classList.remove("is-open");
+  regionModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("no-scroll");
+}
+
 async function openChampionModal(championId) {
-  const champion = champions.find((item) => item.id === championId);
+  if (!championModal) {
+    return;
+  }
+
+  const champion = championRoster.find((item) => item.id === championId);
   if (!champion) {
     return;
   }
 
+  await ensureChampionDetails(champion);
   const resolvedIcons = await getChampionSpellIcons(champion);
 
   detailElements.name.textContent = champion.name;
@@ -1039,8 +1871,10 @@ async function openChampionModal(championId) {
   detailElements.image.alt = `${champion.name} em arte oficial`;
   detailElements.lore.textContent = champion.lore;
   detailElements.style.textContent = champion.style;
-  detailElements.sigil.textContent = champion.sigil;
-  detailElements.sigil.style.background = `linear-gradient(145deg, ${champion.artStart}, ${champion.artEnd})`;
+  if (detailElements.sigil) {
+    detailElements.sigil.textContent = champion.sigil;
+    detailElements.sigil.style.background = `linear-gradient(145deg, ${champion.artStart}, ${champion.artEnd})`;
+  }
   detailElements.tags.innerHTML = champion.tags.map((tag) => `<span class="chip">${tag}</span>`).join("");
   detailElements.laneList.innerHTML = champion.lanes.map((lane) => `<span class="chip is-emphasis">${formatLane(lane)}</span>`).join("");
   detailElements.skills.innerHTML = champion.skills.map((item) => renderSkillItem(champion, item, resolvedIcons)).join("");
@@ -1052,6 +1886,10 @@ async function openChampionModal(championId) {
 }
 
 function closeChampionModal() {
+  if (!championModal) {
+    return;
+  }
+
   championModal.classList.remove("is-open");
   championModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("no-scroll");
@@ -1068,9 +1906,13 @@ function handleRegionFilterClick(event) {
     return;
   }
 
-  activeFilters.region = button.dataset.region;
-  applyFilters();
-  document.getElementById("campeoes").scrollIntoView({ behavior: "smooth", block: "start" });
+  if ((regionFilters?.dataset.variant || "cards") === "compact") {
+    activeFilters.region = button.dataset.region;
+    applyFilters();
+    return;
+  }
+
+  openRegionModal(button.dataset.region);
 }
 
 function handleChampionActivation(event) {
@@ -1083,6 +1925,10 @@ function handleChampionActivation(event) {
 }
 
 function handleScroll() {
+  if (!backToTop) {
+    return;
+  }
+
   if (window.scrollY > 420) {
     backToTop.classList.add("is-visible");
   } else {
@@ -1091,11 +1937,19 @@ function handleScroll() {
 }
 
 function toggleMobileMenu() {
+  if (!mainNav || !menuToggle) {
+    return;
+  }
+
   const isOpen = mainNav.classList.toggle("is-open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
 }
 
 function closeMobileMenu() {
+  if (!mainNav || !menuToggle) {
+    return;
+  }
+
   mainNav.classList.remove("is-open");
   menuToggle.setAttribute("aria-expanded", "false");
 }
@@ -1117,66 +1971,137 @@ function setupReveals() {
   reveals.forEach((item) => observer.observe(item));
 }
 
-function init() {
+async function init() {
+  hydrateFiltersFromUrl();
   renderHeroStats();
   renderFilterOptions();
   renderRegions();
   renderChampions();
   renderFeatured();
   setupReveals();
+  await loadChampionRoster();
+  renderFeatured();
 
-  regionFilters.addEventListener("click", handleRegionFilterClick);
+  if (regionFilters) {
+    regionFilters.addEventListener("click", handleRegionFilterClick);
+  }
 
-  laneFilter.addEventListener("change", () => {
-    activeFilters.lane = laneFilter.value;
-    renderChampions();
-  });
+  if (laneFilter) {
+    laneFilter.addEventListener("change", () => {
+      activeFilters.lane = laneFilter.value;
+      renderChampions();
+    });
+  }
 
-  classFilter.addEventListener("change", () => {
-    activeFilters.className = classFilter.value;
-    renderChampions();
-  });
+  if (classFilter) {
+    classFilter.addEventListener("change", () => {
+      activeFilters.className = classFilter.value;
+      renderChampions();
+    });
+  }
 
-  resetFiltersButton.addEventListener("click", () => {
-    activeFilters.region = "all";
-    activeFilters.lane = "all";
-    activeFilters.className = "all";
-    laneFilter.value = "all";
-    classFilter.value = "all";
-    applyFilters();
-  });
+  if (searchFilter) {
+    searchFilter.addEventListener("input", () => {
+      activeFilters.search = searchFilter.value.trim();
+      renderChampions();
+    });
+  }
 
-  championGrid.addEventListener("click", handleChampionActivation);
-  championGrid.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      const championCard = event.target.closest("[data-champion]");
-      if (!championCard) {
-        return;
+  if (resetFiltersButton) {
+    resetFiltersButton.addEventListener("click", () => {
+      activeFilters.region = "all";
+      activeFilters.lane = "all";
+      activeFilters.className = "all";
+      activeFilters.search = "";
+      syncFilterControls();
+      applyFilters();
+    });
+  }
+
+  if (championGrid) {
+    championGrid.addEventListener("click", handleChampionActivation);
+    championGrid.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        const championCard = event.target.closest("[data-champion]");
+        if (!championCard) {
+          return;
+        }
+
+        event.preventDefault();
+        openChampionModal(championCard.dataset.champion);
       }
+    });
+  }
 
-      event.preventDefault();
-      openChampionModal(championCard.dataset.champion);
-    }
-  });
+  if (featuredRail) {
+    featuredRail.addEventListener("click", handleChampionActivation);
+    featuredRail.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        const featuredCard = event.target.closest("[data-champion]");
+        if (!featuredCard) {
+          return;
+        }
 
-  championModal.addEventListener("click", (event) => {
-    if (event.target.matches("[data-close-modal]")) {
-      closeChampionModal();
-    }
-  });
+        event.preventDefault();
+        openChampionModal(featuredCard.dataset.champion);
+      }
+    });
+  }
+
+  if (championModal) {
+    championModal.addEventListener("click", (event) => {
+      if (event.target.matches("[data-close-modal]")) {
+        closeChampionModal();
+      }
+    });
+  }
+
+  if (regionModal) {
+    regionModal.addEventListener("click", (event) => {
+      if (event.target.matches("[data-close-region-modal]")) {
+        closeRegionModal();
+      }
+    });
+  }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeChampionModal();
+      closeRegionModal();
     }
   });
 
-  menuToggle.addEventListener("click", toggleMobileMenu);
-  mainNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobileMenu));
+  if (modalRegionFilterButton) {
+    modalRegionFilterButton.addEventListener("click", () => {
+      if (isCatalogPage) {
+        activeFilters.region = activeRegionModalId;
+        applyFilters();
+        closeRegionModal();
+        const target = getCatalogAnchorTarget();
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        return;
+      }
 
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+      closeRegionModal();
+      goToCatalog(activeRegionModalId);
+    });
+  }
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", toggleMobileMenu);
+  }
+
+  if (mainNav) {
+    mainNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobileMenu));
+  }
+
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
   window.addEventListener("scroll", handleScroll);
   handleScroll();

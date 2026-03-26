@@ -202,6 +202,9 @@ select {
 .brand-mark {
   width: 44px;
   height: 44px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
   border-radius: 14px;
   background:
     radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.72), transparent 18%),
@@ -216,6 +219,14 @@ select {
   inset: 7px;
   border-radius: 10px;
   border: 1px solid rgba(5, 10, 16, 0.34);
+}
+
+.brand-mark img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand-copy {
@@ -317,8 +328,8 @@ select {
 }
 
 .hero {
-  min-height: 100vh;
-  padding-top: var(--header-height);
+  min-height: calc(100svh - 12px);
+  padding: calc(var(--header-height) + 28px) 0 52px;
   display: flex;
   align-items: center;
   position: relative;
@@ -350,10 +361,27 @@ select {
   transform: rotate(-14deg);
 }
 
+.catalog-hero {
+  position: relative;
+  padding: calc(var(--header-height) + 60px) 0 42px;
+  overflow: clip;
+}
+
+.catalog-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(214, 180, 109, 0.12), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(111, 182, 255, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(3, 8, 14, 0.94), rgba(4, 9, 16, 0.72) 52%, rgba(4, 8, 13, 0.18) 100%);
+}
+
 .hero-grid,
 .split-layout,
 .worldline-layout,
-.footer-layout {
+.footer-layout,
+.catalog-hero-layout,
+.featured-head {
   display: grid;
   gap: 32px;
 }
@@ -369,8 +397,34 @@ select {
   align-items: start;
 }
 
+.catalog-hero-layout {
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.82fr);
+  align-items: end;
+  gap: 42px;
+}
+
 .hero-copy {
   max-width: 640px;
+}
+
+.catalog-copy {
+  max-width: 720px;
+}
+
+.catalog-copy h1 {
+  margin: 0 0 18px;
+  line-height: 1;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  letter-spacing: -0.03em;
+}
+
+.catalog-copy p {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 1.04rem;
 }
 
 .hero h1 {
@@ -431,6 +485,10 @@ select {
   margin-top: 28px;
 }
 
+.catalog-summary {
+  width: 100%;
+}
+
 .hero-stat {
   min-height: 86px;
   padding: 14px;
@@ -456,6 +514,13 @@ select {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
+}
+
+.region-filters[data-variant="compact"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
 }
 
 .region-card {
@@ -532,6 +597,32 @@ select {
   box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
 }
 
+.region-pill {
+  min-height: 54px;
+  flex: 1 1 186px;
+  max-width: 190px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 180, 109, 0.14);
+  background: rgba(9, 18, 31, 0.84);
+  color: #e7dfd1;
+  cursor: pointer;
+  transition: transform var(--ease), border-color var(--ease), background var(--ease), color var(--ease);
+}
+
+.region-pill:hover,
+.region-pill:focus-visible,
+.region-pill.is-active {
+  color: #08111b;
+  background: linear-gradient(135deg, #f1d697, #bb8a3d);
+  border-color: rgba(214, 180, 109, 0.42);
+  transform: translateY(-2px);
+}
+
 .section-heading-inline {
   display: flex;
   justify-content: space-between;
@@ -549,11 +640,47 @@ select {
   grid-template-columns: repeat(2, minmax(0, 220px)) auto;
   gap: 14px;
   align-items: end;
+  margin-top: 18px;
   margin-bottom: 24px;
   padding: 20px;
   border-radius: 22px;
   border: 1px solid rgba(214, 180, 109, 0.12);
   background: rgba(8, 16, 28, 0.84);
+}
+
+.catalog-search {
+  margin-bottom: 18px;
+}
+
+.search-field {
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+}
+
+.search-field span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.search-field input {
+  height: 54px;
+  padding: 0 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(214, 180, 109, 0.16);
+  background: rgba(8, 16, 28, 0.84);
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+.search-field input::placeholder {
+  color: #9b9487;
+}
+
+.search-field input:focus {
+  border-color: rgba(214, 180, 109, 0.34);
+  box-shadow: 0 0 0 4px rgba(214, 180, 109, 0.08);
 }
 
 .filter-group {
@@ -704,11 +831,12 @@ select {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+  align-items: stretch;
 }
 
 .featured-card {
   position: relative;
-  min-height: 300px;
+  min-height: 260px;
   padding: 24px;
   display: grid;
   align-content: end;
@@ -721,6 +849,8 @@ select {
     linear-gradient(150deg, var(--feature-start, #1d3550), #08111d 72%);
   background-size: cover;
   background-position: center top;
+  cursor: pointer;
+  transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
 }
 
 .featured-card::after {
@@ -733,6 +863,13 @@ select {
 .featured-card > * {
   position: relative;
   z-index: 1;
+}
+
+.featured-card:hover,
+.featured-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(214, 180, 109, 0.28);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.34);
 }
 
 .featured-card span {
@@ -750,6 +887,34 @@ select {
 .featured-card p {
   margin: 0;
   max-width: 34ch;
+}
+
+.featured-head {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.featured-head .section-heading {
+  margin-bottom: 0;
+}
+
+.featured-cta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.catalog-section {
+  padding-top: 46px;
+}
+
+.empty-state {
+  padding: 32px 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 180, 109, 0.12);
+  background: rgba(8, 16, 28, 0.84);
+  color: var(--muted);
+  text-align: center;
 }
 
 .worldline-layout {
@@ -836,7 +1001,24 @@ select {
   transition: opacity var(--ease), visibility var(--ease);
 }
 
+.region-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--ease), visibility var(--ease);
+}
+
 .champion-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.region-modal.is-open {
   visibility: visible;
   opacity: 1;
 }
@@ -859,6 +1041,34 @@ select {
     radial-gradient(circle at top right, rgba(111, 182, 255, 0.14), transparent 22%),
     linear-gradient(180deg, rgba(11, 21, 36, 0.98), rgba(4, 8, 14, 0.98));
   box-shadow: 0 28px 96px rgba(0, 0, 0, 0.48);
+}
+
+.region-modal-panel {
+  width: min(980px, 100%);
+}
+
+.region-banner img {
+  object-position: center center;
+}
+
+.region-modal-hero {
+  align-items: end;
+}
+
+.region-modal-content .fact-list {
+  display: grid;
+  gap: 10px;
+}
+
+.region-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+
+.region-filter-cta {
+  min-width: 250px;
 }
 
 .modal-close {
@@ -1107,12 +1317,17 @@ select {
 }
 
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+body.js-ready .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 700ms ease, transform 700ms ease;
 }
 
-.reveal.is-visible {
+body.js-ready .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1170,7 +1385,9 @@ select {
   .split-layout,
   .worldline-layout,
   .footer-layout,
-  .modal-content {
+  .modal-content,
+  .catalog-hero-layout,
+  .featured-head {
     grid-template-columns: 1fr;
   }
 
@@ -1196,6 +1413,10 @@ select {
   .section-heading-inline {
     flex-direction: column;
     align-items: start;
+  }
+
+  .featured-cta {
+    justify-content: flex-start;
   }
 }
 
@@ -1230,8 +1451,20 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .region-filters[data-variant="compact"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .champion-card {
     min-height: 370px;
+  }
+
+  .featured-card {
+    min-height: 240px;
+  }
+
+  .catalog-hero {
+    padding-top: calc(var(--header-height) + 42px);
   }
 
   .modal-banner {
@@ -1248,6 +1481,20 @@ select {
   .modal-hero {
     flex-direction: column;
     align-items: start;
+  }
+
+  .region-modal-footer {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .region-filter-cta {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .search-field {
+    max-width: none;
   }
 }
 

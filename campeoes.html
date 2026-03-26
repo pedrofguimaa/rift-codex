@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Atlas completo de campeoes do Rift Codex com busca por nome, filtros e painel detalhado."
+  >
+  <title>Rift Codex | Atlas Completo de Campeoes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="catalog">
+  <div class="site-shell">
+    <div class="ambient ambient-left"></div>
+    <div class="ambient ambient-right"></div>
+
+    <header class="site-header" id="topo">
+      <div class="header-inner">
+        <a href="index.html#hero" class="brand" aria-label="Ir para o inicio">
+          <span class="brand-mark">
+            <img src="assets/logosite.png" alt="Logo Rift Codex">
+          </span>
+          <span class="brand-copy">
+            <strong>Rift Codex</strong>
+            <small>Arquivo Vivo de Runeterra</small>
+          </span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="main-nav" id="main-nav" aria-label="Navegacao principal">
+          <a href="index.html#sobre">Sobre</a>
+          <a href="index.html#regioes">Regioes</a>
+          <a href="campeoes.html">Campeoes</a>
+          <a href="index.html#destaques">Destaques</a>
+          <a href="index.html#mundo">Linha do Mundo</a>
+          <a href="#campeoes" class="nav-cta">Abrir atlas</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="catalog-hero" id="hero">
+        <div class="catalog-backdrop"></div>
+        <div class="container catalog-hero-layout">
+          <div class="catalog-copy reveal">
+            <span class="eyebrow">Atlas completo</span>
+            <h1>Todos os campeoes em uma pagina pensada para busca, filtro e leitura rapida.</h1>
+            <p>
+              Explore o elenco completo por nome, regiao, lane e classe. Abra qualquer campeao para ver lore,
+              habilidades, curiosidades e perfil de jogo sem sair da pagina.
+            </p>
+          </div>
+          <div class="catalog-summary reveal">
+            <div class="hero-panel-frame">
+              <span class="panel-kicker">Atlas operacional</span>
+              <h2>Um catalogo mais limpo para navegar por volume sem perder atmosfera.</h2>
+              <p>
+                A home ficou focada em ambientacao e destaque. Aqui, a experiencia prioriza descoberta, comparacao
+                e exploracao detalhada do roster completo.
+              </p>
+              <div class="hero-runes" id="heroStats" aria-label="Indicadores do projeto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="champions section catalog-section" id="campeoes">
+        <div class="container">
+          <div class="section-heading section-heading-inline reveal">
+            <div>
+              <span class="eyebrow">Campeoes</span>
+              <h2>Explore o atlas completo de Runeterra.</h2>
+            </div>
+            <p id="championCounter">Carregando campeoes...</p>
+          </div>
+
+          <div class="catalog-search reveal">
+            <label class="search-field" for="searchFilter">
+              <span>Buscar por nome</span>
+              <input id="searchFilter" type="search" placeholder="Ex.: Ahri, Swain, Jinx">
+            </label>
+          </div>
+
+          <div class="region-filters region-filters-compact reveal" id="regionFilters" aria-label="Filtros por regiao" data-variant="compact"></div>
+
+          <div class="filter-toolbar reveal">
+            <div class="filter-group">
+              <label for="laneFilter">Lane</label>
+              <select id="laneFilter" class="filter-select">
+                <option value="all">Todas</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="classFilter">Classe</label>
+              <select id="classFilter" class="filter-select">
+                <option value="all">Todas</option>
+              </select>
+            </div>
+            <button class="filter-reset" id="resetFilters" type="button">Limpar filtros</button>
+          </div>
+
+          <div class="champion-grid" id="championGrid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <div>
+          <strong>Rift Codex</strong>
+          <p>Projeto conceitual de portfolio sobre lore, interface e exploracao visual de League of Legends.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html#sobre">Sobre</a>
+          <a href="index.html#regioes">Regioes</a>
+          <a href="campeoes.html">Campeoes</a>
+          <a href="index.html#destaques">Destaques</a>
+          <a href="index.html#mundo">Linha do Mundo</a>
+        </div>
+        <div class="footer-meta">
+          <p>Creditos ficticios: Arquivistas de Valoran, Departamento de Runas e Memoria.</p>
+          <p class="footer-quote">"Toda lenda deixa uma cicatriz no mapa."</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <aside class="champion-modal" id="championModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalChampionName">
+      <button class="modal-close" type="button" data-close-modal aria-label="Fechar detalhes do campeao">x</button>
+      <div class="modal-banner">
+        <img id="modalChampionImage" alt="">
+      </div>
+
+      <div class="modal-topline">
+        <span id="modalChampionRegion">Regiao</span>
+        <span id="modalChampionClass">Classe</span>
+        <span id="modalChampionLanes">Lanes</span>
+      </div>
+
+      <div class="modal-hero">
+        <div class="modal-title-block">
+          <h2 id="modalChampionName">Campeao</h2>
+          <p id="modalChampionTitle">Titulo</p>
+          <div class="modal-tags" id="modalChampionTags"></div>
+        </div>
+      </div>
+
+      <div class="modal-content">
+        <section>
+          <h3>Lore resumida</h3>
+          <p id="modalChampionLore"></p>
+        </section>
+        <section>
+          <h3>Perfil de jogo</h3>
+          <p id="modalChampionStyle"></p>
+        </section>
+        <section class="modal-span-2">
+          <h3>Habilidades</h3>
+          <ul class="skill-list" id="modalChampionSkills"></ul>
+        </section>
+        <section>
+          <h3>Curiosidades</h3>
+          <ul class="fact-list" id="modalChampionFacts"></ul>
+        </section>
+        <section>
+          <h3>Presenca em rota</h3>
+          <div class="lane-list" id="modalChampionLaneList"></div>
+        </section>
+      </div>
+    </div>
+  </aside>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">^</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
