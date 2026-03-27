@@ -1826,7 +1826,9 @@ function openRegionModal(regionId) {
   regionDetailElements.theme.textContent = region.theme;
   regionDetailElements.image.src = region.image;
   regionDetailElements.image.alt = `Paisagem de ${region.name}`;
-  regionDetailElements.sigil.textContent = region.sigil;
+  if (regionDetailElements.sigil) {
+    regionDetailElements.sigil.textContent = region.sigil;
+  }
   regionDetailElements.description.textContent = region.lore;
   regionDetailElements.traits.innerHTML = region.traits.map((item) => `<li>${item}</li>`).join("");
   regionDetailElements.conflicts.innerHTML = region.conflicts.map((item) => `<li>${item}</li>`).join("");
